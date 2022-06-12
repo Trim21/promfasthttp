@@ -10,9 +10,32 @@ import (
 	"github.com/valyala/fasthttp/fasthttpadaptor"
 )
 
+func requestHeader() *fasthttp.RequestHeader {
+	raw := map[string]string{
+		"accept":                    "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+		"accept-language":           "en-US,en",
+		"cache-control":             "no-cache",
+		"pragma":                    "no-cache",
+		"sec-fetch-dest":            "document",
+		"sec-fetch-mode":            "navigate",
+		"sec-fetch-site":            "none",
+		"sec-fetch-user":            "?1",
+		"sec-gpc":                   "1",
+		"upgrade-insecure-requests": "1",
+	}
+
+	h := &fasthttp.RequestHeader{}
+
+	for key, value := range raw {
+		h.Set(key, value)
+	}
+
+	return h
+}
+
 func BenchmarkPromFasthttp(b *testing.B) {
 	ctx := &fasthttp.RequestCtx{
-		Request:  fasthttp.Request{Header: fasthttp.RequestHeader{}},
+		Request:  fasthttp.Request{Header: *requestHeader()},
 		Response: fasthttp.Response{},
 	}
 	reg := prometheus.NewRegistry()
@@ -26,7 +49,7 @@ func BenchmarkPromFasthttp(b *testing.B) {
 
 func BenchmarkPromHTTP(b *testing.B) {
 	ctx := &fasthttp.RequestCtx{
-		Request:  fasthttp.Request{Header: fasthttp.RequestHeader{}},
+		Request:  fasthttp.Request{Header: *requestHeader()},
 		Response: fasthttp.Response{},
 	}
 	reg := prometheus.NewRegistry()

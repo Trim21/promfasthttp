@@ -33,6 +33,8 @@ func main() {
 
 ## benchmark
 
+see [fasthttp_bench_test.go](./fasthttp_bench_test.go)
+
 comparing `promfasthttp.HandlerFor(reg, promfasthttp.HandlerOpts{})` with
 `fasthttpadaptor.NewFastHTTPHandler(promhttp.HandlerFor(reg, promhttp.HandlerOpts{}))`
 
@@ -41,10 +43,10 @@ goos: windows
 goarch: amd64
 pkg: github.com/trim21/promfasthttp
 cpu: AMD Ryzen 7 5800X 8-Core Processor
-BenchmarkPromFasthttp-16          154302              7688 ns/op           33525 B/op         19 allocs/op
-BenchmarkPromHTTP-16              137118              8912 ns/op           34640 B/op         32 allocs/op
+BenchmarkPromFasthttp-16          109039             12713 ns/op           35328 B/op         46 allocs/op
+BenchmarkPromHTTP-16               83078             15477 ns/op           37825 B/op         88 allocs/op
 PASS
-ok      github.com/trim21/promfasthttp  2.817s
+ok      github.com/trim21/promfasthttp  3.181s
 ```
 
 ## difference
