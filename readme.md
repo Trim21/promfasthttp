@@ -3,7 +3,7 @@
 fasthttp request handler for prometheus.
 
 `fasthttpadaptor.NewFastHTTPHandler()` works fine,
-and there is no significant improvement (see benchmark), you may not need this.
+and there is no significant improvement (see [#benchmark]), you may not need this.
 
 ## example
 
@@ -33,8 +33,7 @@ func main() {
 
 ## benchmark
 
-comparing `handler := promfasthttp.HandlerFor(reg, promfasthttp.HandlerOpts{})` with
-
+comparing `promfasthttp.HandlerFor(reg, promfasthttp.HandlerOpts{})` with
 `fasthttpadaptor.NewFastHTTPHandler(promhttp.HandlerFor(reg, promhttp.HandlerOpts{}))`
 
 ```text
