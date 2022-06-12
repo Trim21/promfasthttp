@@ -1,0 +1,16 @@
+.idea
+.vscode
+env
+.env
+.envrc
+*.py[cod]
+.coverage
+tmp/
+*.exe
+dist/
+bin/
+.env
+.envrc
+coverage.out
+
+node_modules/
